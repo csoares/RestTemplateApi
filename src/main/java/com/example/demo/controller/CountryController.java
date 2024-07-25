@@ -1,10 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +34,10 @@ public class CountryController {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             String countryName = jsonObject.getJSONObject("name").getString("common");
             JSONArray capitalArray = jsonObject.optJSONArray("capital");
-            String capital = (capitalArray != null && capitalArray.length() > 0) ? capitalArray.getString(0) : "No Capital";
+            String capital = (capitalArray != null && !capitalArray.isEmpty()) ? capitalArray.getString(0) : "No Capital";
             String flag = jsonObject.optString("flag", "No Flag");
             JSONArray timezonesArray = jsonObject.optJSONArray("timezones");
-            String timezone = (timezonesArray != null && timezonesArray.length() > 0) ? timezonesArray.getString(0) : "No Timezone";
+            String timezone = (timezonesArray != null && !timezonesArray.isEmpty()) ? timezonesArray.getString(0) : "No Timezone";
             JSONObject languagesObject = jsonObject.optJSONObject("languages");
             String language = (languagesObject != null) ? languagesObject.keys().next() : "No Language";
 
